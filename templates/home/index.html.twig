@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block content %}
+
+    <div class="container-fluid">
+        {# Titre de la page #}
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">MERCADONA</h1>
+            </div>
+        </div>
+
+        <div class="row alert alert-warning" role="alert">
+            <div class="col-xs-9 col-sm-10"></div>
+
+            <div class="col-xs-3 col-sm-2">
+                <a href="{{ path('produit_add') }}" role="button" class="btn btn-info text-right">
+                    <i class="fa fa-plus fa-fw"></i> Ajouter
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Libellé</th>
+                    <th scope="col">Catégorie</th>
+                    <th scope="col">Prix</th>
+                    <th scope="col">Promotion</th>
+                    <th scope="col">Remise</th>
+                    <th scope="col">Fin promo</th>
+                    <th scope="col">Admin</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">{# Bouton d'action - Supprimer #}</th>
+                    <th scope="col">{# Bouton d'action - Modifier #}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for produit in produits %}
+                <tr>
+                    <th scope="row">
+                        {{ produit.id }}
+                    </th>
+                    <td>
+                        {{ produit.libelle }}
+                    </td>
+                    <td>
+                        {{ produit.categorie }}
+                    </td>
+                    <td>
+                        {{ produit.prix }}
+                    </td>
+                    <td>
+                        {{ produit.EnPromo ? 'Oui' : 'Non' }}
+                    </td>
+                    <td>
+                        {{ produit.remise }}
+                    </td>
+                    <td>
+                        {{ produit.datefin }}
+                    </td>
+                    <td>
+                        {{ produit.author.username }}
+                    </td>
+                    <td>
+                        {{ produit.description|nl2br }}
+                    </td>
+                    <td>
+                        <a href="{{ path('produit_remove', {'id': produit.id}) }}" role="button" class="btn btn-danger">Supprimer</a>
+                    </td>
+                    <td>
+                        <a href="{{ path('produit_edit', {'id': produit.id}) }}" role="button" class="btn btn-info">Modifier</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}

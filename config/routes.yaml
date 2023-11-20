@@ -1,0 +1,26 @@
+homepage:
+    path: /
+    controller: App\Controller\HomeController::index
+
+
+produit_show:
+    path: /{id}
+    controller: App\Controller\ProduitController::index
+    requirements:
+      id: '\d+'
+
+produit_add:
+    path: /add
+    controller: App\Controller\ProduitController::index
+    
+produit_edit:
+    path: /edit/{id}
+    controller: App\Controller\ProduitController::index
+    requirements:
+      id: '\d+'
+
+produit_remove:
+    path: /remove/{id}
+    controller: App\Controller\ProduitController::index
+    requirements:
+      id: '\d+'
